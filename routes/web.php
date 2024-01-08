@@ -26,16 +26,6 @@ Route::get('/', function () {
 
 Route::resource('comics', ComicController::class);
 
-Route::get('/characters', function () {
-    // $comics = config('db.comics');
-    $content = config('navcontent.navcontent');
-    $header = config('headerdb.headercontent');
-    $comicsContent = config('footercontent.dcComics');
-    $dc = config('footercontent.dc');
-    $sites = config('footercontent.sites');
-    return view('pages.characters', compact('content', 'header', 'comicsContent', 'dc', 'sites'));
-})->name('characters');
-
 // Route::get('/comics', function () {
 //     // $comics = config('db.comics');
 //     $content = config('navcontent.navcontent');

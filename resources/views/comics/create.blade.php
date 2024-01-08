@@ -11,12 +11,14 @@
                         {{-- token di sicurezza --}}
                         @csrf
 
-                        <input class="form-control" type="text" placeholder="Inserisci un titolo" id="title" name="title">
-                        <input class="form-control" type="text" placeholder="Inserisci una decsrizione" id="decription" name="description">
-                        <input class="form-control" type="text" placeholder="Inserisci un prezzo" id="price" name="price">
-                        <input class="form-control" type="text" placeholder="Inserisci un titolo" id="title" name="title">
-                        <input class="form-control" type="text" placeholder="Inserisci un tipo" id="type" name="type">
-                        <button type="submit">invia</button>
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci un titolo" id="title" name="title">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci una descrizione" id="decription" name="description">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci url immagine" id="thumb" name="thumb">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci un prezzo" id="price" name="price">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci la serie" id="series" name="series">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci data di vendita" id="sale_date" name="sale_date">
+                        <input class="form-control mb-2" type="text" placeholder="Inserisci un tipo" id="type" name="type">
+                        <button type="submit" class="btn btn-success">invia</button>
                     </form>
                 </div>
             </div>

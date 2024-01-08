@@ -6,10 +6,10 @@
         <nav>
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'characters' ? 'active' : 'text-black' }}" href="{{ route('characters')}}">characters</a>
+                    <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'comics.index' ? 'active' : 'text-black' }}" href="{{ route('comics.index') }}">comics</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'comics.index' ? 'active' : 'text-black' }}" href="{{ route('comics.index') }}">comics</a>
+                    <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'comics.create' ? 'active' : 'text-black' }}" href="{{ route('comics.create') }}">Add Comic</a>
                 </li>
                 {{-- @foreach ($header as $item)
                 <li class="nav-item">

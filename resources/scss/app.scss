@@ -1,0 +1,85 @@
+@use './partials/variables' as *;
+
+$fa-font-path: "../webfonts" !default;
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+
+@import '~bootstrap/scss/bootstrap';
+
+$main-color: #0282F9;
+$main-background-color: #303030;
+$main-text-color: #959595;
+
+.top-section {
+    height: 40vh;
+    background-image: url(../img/jumbotron.jpg);
+    background-size: 100%;
+}
+h3 {
+    position: absolute;
+    bottom: -8%;
+    left: 22%;
+    z-index: 2000;
+}
+.my-card-img {
+    width: 200px;
+    height: 200px;
+}
+.my-nav {
+    margin: 0;
+    background-color: $main-color;
+    position: relative;
+    z-index: 1000;
+}
+.navbar-img {
+    width: 60px;
+    height: 65px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+footer {
+    background-image: url(../img/footer-bg.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.footer-img {
+    position: absolute;
+    top: -25%;
+    right: 0;
+    width: 50%;
+}
+li {
+    list-style: none;
+    color: white;
+}
+h5 {
+    margin: 0;
+}
+.my-font-size {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+.my-container {
+    background-color: $main-background-color;
+    position: relative;
+    z-index: 1000;
+}
+.sign-up {
+    color: white;
+    border: 2px solid $main-color;
+    cursor: pointer;
+}
+.my-span {
+    color: $main-color;
+    cursor: pointer;
+}
+.second-footer-img {
+    cursor: pointer;
+}
+.active {
+    color: $main-color;
+}

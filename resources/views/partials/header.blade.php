@@ -11,11 +11,14 @@
                 <li class="nav-item">
                     <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'comics.create' ? 'active' : 'text-black' }}" href="{{ route('comics.create') }}">Add Comic</a>
                 </li>
-                {{-- @foreach ($header as $item)
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase {{ Route::currentRouteName() == 'home' ? 'active' : 'text-black' }}" href="{{ route('home') }}">Home</a>
+                </li>
+                @foreach (config('headerdb.headercontent') as $item)
                 <li class="nav-item">
                     <a class="nav-link text-black text-uppercase" href="#">{{ $item }}</a>
                 </li>
-                @endforeach --}}
+                @endforeach
             </ul>
         </nav>
         <div class="input-group w-auto ">

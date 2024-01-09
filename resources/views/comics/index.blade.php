@@ -3,7 +3,13 @@
 @section('title', 'Comics')
 
 @section('content')
-    <main class="w-100 bg-black p-5">
+    <main class="w-100 bg-black p-5 position-relative z-1">
+        @if (session()->has('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
         <div class="container">
             <div class="row">
                 @foreach ($comics as $comic)
@@ -12,6 +18,11 @@
                         <div>
                             <h5 class="text-white m-0">{{ $comic->title }}</h5>
                             <a class="btn btn-primary" href="{{route('comics.show', $comic->id)}}">More info</a>
+                            <form action="{{route('comics.destroy', $comic->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </div>
                     </div>
                 @endforeach

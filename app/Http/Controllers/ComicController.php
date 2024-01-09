@@ -40,17 +40,30 @@ class ComicController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // prendo i dati passati dal form dalla request
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'type' => 'required|max:50',
+            'price' => 'required|max:20',
+            'series' => 'required|max:30',
+            'sale_date' => 'required',
+
+        ]);
         $formData = $request->all();
         $newComic = new Comic;
-        $newComic->title = $formData['title'];
-        $newComic->description = $formData['description'];
-        $newComic->thumb = $formData['thumb'];
-        $newComic->price = $formData['price'];
-        $newComic->series = $formData['series'];
-        $newComic->sale_date = $formData['sale_date'];
-        $newComic->type = $formData['type'];
+        // assegno i valori del form al nuovo prodotto
+        $newComic->fill($formData);
+        // $newComic->title = $formData['title'];
+        // $newComic->description = $formData['description'];
+        // $newComic->thumb = $formData['thumb'];
+        // $newComic->price = $formData['price'];
+        // $newComic->series = $formData['series'];
+        // $newComic->sale_date = $formData['sale_date'];
+        // $newComic->type = $formData['type'];
+        // salvo il prodotto
         $newComic->save();
-        return to_route('comics.index');
+        // reindirizzo l'utente alla pagina del fumetto appena creato
+        return to_route('comics.show', $newComic->id);
     }
 
     /**
@@ -68,11 +81,11 @@ class ComicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact("comic"));
     }
 
     /**
@@ -84,17 +97,27 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+        $formData = $request->all();
+        $comic->title = $formData['title'];
+        $comic->description = $formData['description'];
+        $comic->thumb = $formData['thumb'];
+        $comic->price = $formData['price'];
+        $comic->series = $formData['series'];
+        $comic->sale_date = $formData['sale_date'];
+        $comic->type = $formData['type'];
+        $comic->update();
+        return to_route('comics.show', $comic->id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return to_route('comics.index')->with('message', "Il fumetto $comic->title è stato eliminato");
     }
 }

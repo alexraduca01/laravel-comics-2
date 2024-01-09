@@ -3,10 +3,11 @@
 @section('title', $comic->title)
 
 @section('content')
-    <main class="w-100 p-5">
+    <main class="w-100 p-5 position-relative z-1 bg-white">
         <div class="container">
             <div class="row">
                 <div class="g-3">
+                    <a href="{{ route('comics.edit', $comic->id) }}" class="btn btn-primary">Edit</a>
                     <img style="position: relative; top: -125px; left: 0;" src="{{ $comic->thumb }}" alt="{{ $comic->title }}">
                     <div class="row justify-content-between ">
                         <div class="col-8">

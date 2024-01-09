@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ComicController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +18,7 @@ use App\Http\Controllers\ComicController;
 |
 */
 
-Route::get('/', function () {
-    $content = config('navcontent.navcontent');
-    $header = config('headerdb.headercontent');
-    $comicsContent = config('footercontent.dcComics');
-    $dc = config('footercontent.dc');
-    $sites = config('footercontent.sites');
-    return view('home', compact('content', 'header', 'comicsContent', 'dc', 'sites'));
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('comics', ComicController::class);
 

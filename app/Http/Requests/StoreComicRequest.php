@@ -30,6 +30,7 @@ class StoreComicRequest extends FormRequest
             'price' => 'required|max:20',
             'series' => 'required|max:30',
             'sale_date' => 'required',
+            'description' => 'nullable',
             'thumb' => 'url',
 
         ];

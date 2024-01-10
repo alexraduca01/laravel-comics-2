@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 
 class ComicController extends Controller
@@ -38,7 +40,7 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
         // dd($request->all());
         // prendo i dati passati dal form dalla request
@@ -51,9 +53,10 @@ class ComicController extends Controller
         //     'thumb' => 'url',
 
         // ]);
-        $formData = $this->validation($request->all());
+        // $formData = $this->validation($request->all());
         $newComic = new Comic;
-        // assegno i valori del form al nuovo prodotto
+        // assegno i valori del form al nuovo fumetto
+        $formData = $request->validated();
         $newComic->fill($formData);
         // $newComic->title = $formData['title'];
         // $newComic->description = $formData['description'];
@@ -62,7 +65,7 @@ class ComicController extends Controller
         // $newComic->series = $formData['series'];
         // $newComic->sale_date = $formData['sale_date'];
         // $newComic->type = $formData['type'];
-        // salvo il prodotto
+        // salvo il fumetto
         $newComic->save();
         // reindirizzo l'utente alla pagina del fumetto appena creato
         return to_route('comics.show', $newComic->id);
@@ -97,10 +100,10 @@ class ComicController extends Controller
      * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
         // $formData = $request->all();
-        $formData = $this->validation($request->all());
+        // $formData = $this->validation($request->all());
         // $comic->title = $formData['title'];
         // $comic->description = $formData['description'];
         // $comic->thumb = $formData['thumb'];
@@ -108,6 +111,7 @@ class ComicController extends Controller
         // $comic->series = $formData['series'];
         // $comic->sale_date = $formData['sale_date'];
         // $comic->type = $formData['type'];
+        $formData = $request->validated();
         $comic->fill($formData);
         $comic->update();
         return to_route('comics.show', $comic->id);
@@ -128,31 +132,31 @@ class ComicController extends Controller
      * Summary of validation
      *
      */
-    private function validation($data)
-    {
-        $validator = Validator::make($data, [
+    // private function validation($data)
+    // {
+    //     $validator = Validator::make($data, [
 
-            'title' => 'required|min:5|max:255',
-            'type' => 'required|max:50',
-            'price' => 'required|max:20',
-            'series' => 'required|max:30',
-            'sale_date' => 'required',
-            'thumb' => 'url',
+    //         'title' => 'required|min:5|max:255',
+    //         'type' => 'required|max:50',
+    //         'price' => 'required|max:20',
+    //         'series' => 'required|max:30',
+    //         'sale_date' => 'required',
+    //         'thumb' => 'url',
 
-        ],[
-            'title.required' => 'Il campo titolo è obbligatorio',
-            'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
-            'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
-            'type.required' => 'Il campo tipo è obbligatorio',
-            'type.max' => 'Il campo tipo deve avere massimo :max caratteri',
-            'price.required' => 'Il campo prezzo è obbligatorio',
-            'price.max' => 'Il campo prezzo deve avere massimo :max caratteri',
-            'series.required' => 'Il campo serie è obbligatorio',
-            'series.max' => 'Il campo serie deve avere massimo :max caratteri',
-            'sale_date.required' => 'Il campo data di uscita è obbligatorio',
-            'thumb.url' => 'Il campo immagine deve essere un url',
-        ])->validate();
+    //     ],[
+    //         'title.required' => 'Il campo titolo è obbligatorio',
+    //         'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
+    //         'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+    //         'type.required' => 'Il campo tipo è obbligatorio',
+    //         'type.max' => 'Il campo tipo deve avere massimo :max caratteri',
+    //         'price.required' => 'Il campo prezzo è obbligatorio',
+    //         'price.max' => 'Il campo prezzo deve avere massimo :max caratteri',
+    //         'series.required' => 'Il campo serie è obbligatorio',
+    //         'series.max' => 'Il campo serie deve avere massimo :max caratteri',
+    //         'sale_date.required' => 'Il campo data di uscita è obbligatorio',
+    //         'thumb.url' => 'Il campo immagine deve essere un url',
+    //     ])->validate();
 
-        return $validator;
-    }
+    //     return $validator;
+    // }
 }

@@ -70,8 +70,8 @@ php artisan migrate
 #revert migration
 php artisan migrate:rollback
 
-#creare il model (necessario per salvare dati su db con seeder)
-php artisan make:model Nome
+#creare il model e contestualmente resource controller, migration, seeder e form request per validazioni
+php artisan make:model Nome -rcms --request
 
 #popolare il db  es.
 php artisan make:seeder UsersTableSeeder
@@ -86,5 +86,9 @@ php artisan make:controller NomeController
 
 
 # creo le views relative
+
+# creo form request per validazione
+
+php artisan make:request StoreNOMEMODELRequest
 
 ```

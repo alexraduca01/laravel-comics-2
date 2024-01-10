@@ -11,6 +11,16 @@
         @endif
 
         <div class="container">
+            <div>
+                <form action="{{ route('comics.index') }}" method="GET">
+                    <select name="search" id="search">
+                        <option value="">Tutti</option>
+                        <option value="comic book">Comic book</option>
+                        <option value="graphic novel">Graphic novel</option>
+                    </select>
+                    <button type="submit" class="btn btn-success">Invio</button>
+                </form>
+            </div>
             <div class="row">
                 @foreach ($comics as $comic)
                     <div class="col-2 g-3">

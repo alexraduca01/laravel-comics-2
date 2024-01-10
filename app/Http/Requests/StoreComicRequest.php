@@ -49,7 +49,7 @@ class StoreComicRequest extends FormRequest
             'series.required' => 'Il campo serie è obbligatorio',
             'series.max' => 'Il campo serie deve avere massimo :max caratteri',
             'sale_date.required' => 'Il campo data di uscita è obbligatorio',
-            'thumb.url' => 'Il campo immagine deve essere un url',
+            'thumb.url' => 'Il campo immagine deve essere una url',
         ];
     }
 }

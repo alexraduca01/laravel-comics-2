@@ -26,10 +26,25 @@
                         @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci una descrizione" id="decription" name="description">
                         <input class="form-control mb-2" type="text" placeholder="Inserisci url immagine" id="thumb" name="thumb">
+                        @error('thumb')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci un prezzo" id="price" name="price">
+                        @error('price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci la serie" id="series" name="series">
+                        @error('series')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci data di vendita" id="sale_date" name="sale_date">
+                        @error('sale_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci un tipo" id="type" name="type">
+                        @error('type')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <button type="submit" class="btn btn-success">invia</button>
                     </form>
                 </div>

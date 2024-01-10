@@ -20,7 +20,10 @@
                         {{-- token di sicurezza --}}
                         @csrf
 
-                        <input class="form-control mb-2" type="text" placeholder="Inserisci un titolo" id="title" name="title">
+                        <input class="form-control mb-2 @error('title') is-invalid @enderror" type="text" placeholder="Inserisci un titolo" id="title" name="title">
+                        @error('title')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                         <input class="form-control mb-2" type="text" placeholder="Inserisci una descrizione" id="decription" name="description">
                         <input class="form-control mb-2" type="text" placeholder="Inserisci url immagine" id="thumb" name="thumb">
                         <input class="form-control mb-2" type="text" placeholder="Inserisci un prezzo" id="price" name="price">

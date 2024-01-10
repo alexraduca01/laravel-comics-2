@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -41,15 +42,16 @@ class ComicController extends Controller
     {
         // dd($request->all());
         // prendo i dati passati dal form dalla request
-        $request->validate([
-            'title' => 'required|min:5|max:255',
-            'type' => 'required|max:50',
-            'price' => 'required|max:20',
-            'series' => 'required|max:30',
-            'sale_date' => 'required',
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255|unique:comics',
+        //     'type' => 'required|max:50',
+        //     'price' => 'required|max:20',
+        //     'series' => 'required|max:30',
+        //     'sale_date' => 'required',
+        //     'thumb' => 'url',
 
-        ]);
-        $formData = $request->all();
+        // ]);
+        $formData = $this->validation($request->all());
         $newComic = new Comic;
         // assegno i valori del form al nuovo prodotto
         $newComic->fill($formData);
@@ -97,14 +99,16 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        $formData = $request->all();
-        $comic->title = $formData['title'];
-        $comic->description = $formData['description'];
-        $comic->thumb = $formData['thumb'];
-        $comic->price = $formData['price'];
-        $comic->series = $formData['series'];
-        $comic->sale_date = $formData['sale_date'];
-        $comic->type = $formData['type'];
+        // $formData = $request->all();
+        $formData = $this->validation($request->all());
+        // $comic->title = $formData['title'];
+        // $comic->description = $formData['description'];
+        // $comic->thumb = $formData['thumb'];
+        // $comic->price = $formData['price'];
+        // $comic->series = $formData['series'];
+        // $comic->sale_date = $formData['sale_date'];
+        // $comic->type = $formData['type'];
+        $comic->fill($formData);
         $comic->update();
         return to_route('comics.show', $comic->id);
     }
@@ -119,5 +123,36 @@ class ComicController extends Controller
     {
         $comic->delete();
         return to_route('comics.index')->with('message', "Il fumetto $comic->title è stato eliminato");
+    }
+    /**
+     * Summary of validation
+     *
+     */
+    private function validation($data)
+    {
+        $validator = Validator::make($data, [
+
+            'title' => 'required|min:5|max:255',
+            'type' => 'required|max:50',
+            'price' => 'required|max:20',
+            'series' => 'required|max:30',
+            'sale_date' => 'required',
+            'thumb' => 'url',
+
+        ],[
+            'title.required' => 'Il campo titolo è obbligatorio',
+            'title.min' => 'Il campo titolo deve avere almeno :min caratteri',
+            'title.max' => 'Il campo titolo deve avere massimo :max caratteri',
+            'type.required' => 'Il campo tipo è obbligatorio',
+            'type.max' => 'Il campo tipo deve avere massimo :max caratteri',
+            'price.required' => 'Il campo prezzo è obbligatorio',
+            'price.max' => 'Il campo prezzo deve avere massimo :max caratteri',
+            'series.required' => 'Il campo serie è obbligatorio',
+            'series.max' => 'Il campo serie deve avere massimo :max caratteri',
+            'sale_date.required' => 'Il campo data di uscita è obbligatorio',
+            'thumb.url' => 'Il campo immagine deve essere un url',
+        ])->validate();
+
+        return $validator;
     }
 }

@@ -1,7 +1,7 @@
 <header>
     <div class="container d-flex justify-content-between align-items-center p-3">
         <div>
-            <img src="../img/dc-logo.png" alt="logo">
+            <img src="/img/dc-logo.png" alt="logo">
         </div>
         <nav>
             <ul class="nav">
